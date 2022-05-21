@@ -5,6 +5,13 @@ We rely on the following external repositories:
 * https://github.com/NVIDIA/apex
 * https://github.com/facebookresearch/fairscale.git
 
+## Load Modules Dependencies
+
+```sh
+source metaseq/scripts/frontera-setup.sh
+# ACTIVATE VIRTUAL ENVIRONMENT
+bash metaseq/scripts/frontera-check.ch
+```
 ## Install PyTorch
 ```
 pip install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio==0.10.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
