@@ -28,10 +28,10 @@ except ModuleNotFoundError:
     # reshard-model_part-5.pt
     # reshard-model_part-6.pt
     # reshard-model_part-7.pt
-    MODEL_SHARED_FOLDER = ""
+    MODEL_SHARED_FOLDER = "/work2/08868/sstevens/shared/resharded"
     # LOCAL_SSD is optional, but it's assuming you have some sort of local
     # hard disk where we can cache a copy of the weights for faster loading.
-    LOCAL_SSD = ""
+    LOCAL_SSD = os.path.join(os.environ['SCRATCH'], 'cache')
     if not LOCAL_SSD:
         # don't use local cache
         LOCAL_SSD = MODEL_SHARED_FOLDER
@@ -45,7 +45,7 @@ BPE_MERGES = os.path.join(MODEL_SHARED_FOLDER, "gpt2-merges.txt")
 BPE_VOCAB = os.path.join(MODEL_SHARED_FOLDER, "gpt2-vocab.json")
 
 # where to find the raw files on nfs
-CHECKPOINT_FOLDER = os.path.join(MODEL_SHARED_FOLDER, "175B", "reshard_no_os")
+CHECKPOINT_FOLDER = os.path.join(MODEL_SHARED_FOLDER)
 # where to store them on SSD for faster loading
 CHECKPOINT_LOCAL = os.path.join(LOCAL_SSD, "175B", "reshard_no_os", "reshard.pt")
 
