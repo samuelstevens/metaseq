@@ -31,7 +31,7 @@ except ModuleNotFoundError:
     MODEL_SHARED_FOLDER = "/work2/08868/sstevens/shared/resharded"
     # LOCAL_SSD is optional, but it's assuming you have some sort of local
     # hard disk where we can cache a copy of the weights for faster loading.
-    LOCAL_SSD = os.path.join(os.environ['SCRATCH'], 'cache')
+    LOCAL_SSD = '/scratch1/08868/sstevens/cache'
     if not LOCAL_SSD:
         # don't use local cache
         LOCAL_SSD = MODEL_SHARED_FOLDER

@@ -10,7 +10,7 @@ We rely on the following external repositories:
 ```sh
 source metaseq/scripts/frontera-setup.sh
 # ACTIVATE VIRTUAL ENVIRONMENT
-bash metaseq/scripts/frontera-check.ch
+bash metaseq/scripts/frontera-check.sh
 ```
 ## Install PyTorch
 ```
