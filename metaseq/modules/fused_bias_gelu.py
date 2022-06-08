@@ -21,7 +21,9 @@ except ImportError:
 
 def load_megatron_fused_kernel():
     """Compile and load fused kernels from Megatron."""
+    print("LOAD_MEGATRON_FUSED_KERNEL")
     if getattr(load_megatron_fused_kernel, "has_run", False):
+        print("Skipping load_megatron_fused_kernel because it has already run.")
         return
     load_megatron_fused_kernel.has_run = True
 
@@ -36,6 +38,8 @@ def load_megatron_fused_kernel():
     global_rank = torch.distributed.get_rank()
     args = Namespace(rank=global_rank, masked_softmax_fusion=True)
 
+    print("GLOBAL RANK:", global_rank)
+
     # Always build on rank zero first.
     if global_rank == 0:
         build_dir = os.path.join(os.path.dirname(fused_kernels.__file__), "build")
@@ -47,9 +51,12 @@ def load_megatron_fused_kernel():
             f"The megatron build directory is located at: {build_dir}"
         )
         fused_kernels.load(args)
+        logger.info("Waiting on other processes to build fused_kernels.")
         torch.distributed.barrier()
     else:
+        logger.warn("Waiting on main process to build fused_kernels. [rank: %s]", global_rank)
         torch.distributed.barrier()
+        logger.warn("Building fused_kernels. [rank: %s]", global_rank)
         fused_kernels.load(args)
 
     # Simple barrier to make sure all ranks have passed the

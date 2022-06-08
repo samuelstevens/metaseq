@@ -245,6 +245,7 @@ class TransformerDecoderLayer(nn.Module):
         add_zero_attn=False,
     ):
         super().__init__()
+        print("About to load the fused kernel!")
         load_megatron_fused_kernel()
         self.embed_dim = args.decoder_embed_dim
         self.dropout_module = Dropout(args.dropout, module_name=self.__class__.__name__)

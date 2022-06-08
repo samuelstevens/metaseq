@@ -61,7 +61,7 @@ LAUNCH_ARGS = [
     f"--path {CHECKPOINT_LOCAL}",
     "--beam 1 --nbest 1",
     "--distributed-port 13000",
-    "--checkpoint-shard-count 1",
+    "--checkpoint-shard-count 8",
     "--use-sharded-state",
     f"--batch-size {BATCH_SIZE}",
     f"--buffer-size {BATCH_SIZE * MAX_SEQ_LEN}",
